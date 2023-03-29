@@ -22,7 +22,7 @@ const ShoppingCart = () => {
     dispatch({ type: TYPE.ADD_TO_CART, payload: id });
   };
 
-  const delFromCart = (id, all = false) => {
+  const delFromCart = (id, all = true) => {
     if (all) {
       dispatch({ type: TYPE.REMOVE_ALL_FROM_CART, payload: id })
     }
