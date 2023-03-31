@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import ShoppingCart from './components/Shopping/ShoppingCart'
+import Home from './Pages/Home'
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
     <BrowserRouter>
         <Routes>
-          <Route path='/' element={<ShoppingCart />} exact></Route>
+          <Route path='/' element={<Home />} exact></Route>
         </Routes>
       </BrowserRouter>
     </div>
