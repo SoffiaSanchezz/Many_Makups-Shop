@@ -1,15 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Product from './Product';
 
-const ButtonCategories = (props) => {
+const ButtonCategories = ({ products }) => {
+  const uniqueCategories = [...new Set(products.map(product => product.category))];
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const filteredProducts = selectedCategory
+    ? products.filter(product => product.category === selectedCategory)
+    : products;
+
+  const CategoryButtons = ({ onCategorySelected }) => {
+    return (
+      <div>
+        <button onClick={() => onCategorySelected(null)}>Todos</button>
+        {uniqueCategories.map((category, index) => (
+          <button key={index} onClick={() => onCategorySelected(category)}>{category}</button>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div>
-          <button onClick={() => props.onCategoriaSeleccionada(null)}>Todos</button>
-          <button onClick={() => props.onCategoriaSeleccionada("Labial")}>Labial</button>
-          <button onClick={() => props.onCategoriaSeleccionada("Accesorios")}>Accesorios</button>
-          <button onClick={() => props.onCategoriaSeleccionada("ojos")}>Ojos</button>
-          <button onClick={() => props.onCategoriaSeleccionada("facial")}>Facial</button>
+      <CategoryButtons onCategorySelected={setSelectedCategory} />
+      {filteredProducts.map(product => (
+        <Product key={product.id} product={product} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default ButtonCategories
+export default ButtonCategories;
