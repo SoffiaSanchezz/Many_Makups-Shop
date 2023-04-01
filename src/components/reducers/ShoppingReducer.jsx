@@ -326,7 +326,8 @@ export const ShoppingInitialState = {
         },
         {
             id: "035",
-            categoria1Id: "Corporal",
+            categoria1Id: "8",
+            type:"Capilar y Corporal",
             name: "Crema Corporal hidratante",
             price: "25000",
             img: "https://github.com/SoffiaSanchezz/imgs/blob/main/assets/Producto37.jpeg?raw=true",
@@ -642,7 +643,6 @@ export const ShoppingInitialState = {
             id: "070",
             categoriaId: "2",
             type: "Kit de Brochas",
-            categoria2Id: "Kit de brochas",
             name: "Kit Brocha x9",
             price: "40000",
             img: "https://github.com/SoffiaSanchezz/imgs/blob/main/assets/Producto90.jpeg?raw=true",
@@ -698,6 +698,13 @@ export function ShoppingReducer(state, action) {
             return ShoppingInitialState;
         default:
             return state;
-    }
+
+        case TYPE.SELECT_CATEGORY:
+            return {
+                ...state,
+                categoriaSeleccionada: action.payload,
+            };
+    };
+
 }
 
